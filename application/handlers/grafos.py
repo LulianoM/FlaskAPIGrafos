@@ -9,7 +9,7 @@ blueprint = Blueprint("grafos", __name__)
 @blueprint.route("/grafos", methods=["GET"])
 def GetAll():
     value = GrafosControllerGet.GetAll()
-    return jsonify({"grafos": "ok"}), value
+    return jsonify({"Nodes": value}) 
     
 @blueprint.route("/grafos/<level>/<id>", methods=["GET"])
 def GetByID(level, id):

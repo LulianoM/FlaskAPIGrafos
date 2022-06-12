@@ -1,8 +1,12 @@
+from application.repositories.grafos import GrafosRepositories
+
+
 class GrafosControllerGet:
     
     @staticmethod
     def GetAll():
-        return 200
+        data = GrafosRepositories.LoadGrafos()
+        return data.columns.tolist()
 
     @staticmethod
     def GetByID(level, id):
