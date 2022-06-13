@@ -8,12 +8,12 @@ class GrafosControllerGet:
     
     @staticmethod
     def GetAll():
-        data = GrafosRepositories.LoadGrafos()
+        data = GrafosRepositories.LoadGrafosDataframe()
         return jsonify({"Nodes": data.columns.tolist()})  , 200
 
     @staticmethod
     def GetByID(level, name):
-        data = GrafosRepositories.LoadGrafos()
+        data = GrafosRepositories.LoadGrafosDataframe()
         if GrafosDomain.NameInNodes(data, name):
             if level == "1":
                 return GrafosDomain.SearchAllFriends(data, name), 200

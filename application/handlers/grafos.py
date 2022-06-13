@@ -1,5 +1,6 @@
 
-from flask import Blueprint,jsonify
+from application.controllers.grafosPost import GrafosControllerPost
+from flask import Blueprint,jsonify,request
 from application.controllers.grafosGet import GrafosControllerGet
 
 blueprint = Blueprint("grafos", __name__)
@@ -15,4 +16,6 @@ def GetByID(level, name):
 
 @blueprint.route("/grafos", methods=["POST"])
 def Create():
-    return jsonify({"grafos post": "ok"}), 200
+    content = request.json
+    name, friends = content["name"], content["friends"]
+    return GrafosControllerPost.Create(name, friends)
