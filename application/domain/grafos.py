@@ -21,3 +21,11 @@ class GrafosDomain:
                 if otherFriend not in friendsList[name] and otherFriend != name:
                     friendsOutMyList.append(otherFriend)
         return {name: friendsOutMyList}
+
+    def FriendsValidationExist(data, friends):
+        allNames = data.columns.tolist()
+        for name in friends:
+            print(name)
+            if name not in allNames:
+                return True
+        return False
