@@ -1,6 +1,5 @@
 
 from flask import Blueprint,jsonify
-
 from application.controllers.grafosGet import GrafosControllerGet
 
 blueprint = Blueprint("grafos", __name__)
@@ -8,13 +7,11 @@ blueprint = Blueprint("grafos", __name__)
 
 @blueprint.route("/grafos", methods=["GET"])
 def GetAll():
-    value = GrafosControllerGet.GetAll()
-    return jsonify({"Nodes": value}) 
+    return GrafosControllerGet.GetAll()
     
-@blueprint.route("/grafos/<level>/<id>", methods=["GET"])
-def GetByID(level, id):
-    level_, id_ = GrafosControllerGet.GetByID(level , id)
-    return jsonify({"level": level_, "id": id_}), 200
+@blueprint.route("/grafos/<level>/<name>", methods=["GET"])
+def GetByID(level, name):
+    return GrafosControllerGet.GetByID(level , name)
 
 @blueprint.route("/grafos", methods=["POST"])
 def Create():
