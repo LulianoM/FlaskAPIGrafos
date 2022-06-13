@@ -15,7 +15,15 @@ class GrafosControllerGet:
     def GetByID(level, name):
         data = GrafosRepositories.LoadGrafos()
         if GrafosDomain.NameInNodes(data, name):
-            return {name: data[name].dropna().tolist()}, 200
+            if level == "1":
+                return GrafosDomain.SearchAllFriends(data, name), 200
+            elif level == "2":
+                return GrafosDomain.SearchFriendsByOtherFriend(data, name), 200
+            else:
+                err = {
+                "err": "Level dont exist"
+            }
+            return err, 400
         else:
             err = {
                 "err": "Name dont exist in nodes"
